@@ -4,7 +4,7 @@ import cats.Monad
 import SimpleAccount._
 import com.calvin.experiments.domain.AccountService
 
-object SimpleAccountService extends AccountService[MoneyBD, SimpleAccount, ErrorOr] {
+trait SimpleAccountService extends AccountService[MoneyBD, SimpleAccount, ErrorOr] {
   override implicit val effectMonad: Monad[ErrorOr] = cats.instances.either.catsStdInstancesForEither
 
   override def credit(amount: MoneyBD): SimpleAccount => SimpleAccount = account =>
@@ -34,3 +34,5 @@ object SimpleAccountService extends AccountService[MoneyBD, SimpleAccount, Error
       )
     }
 }
+
+object SimpleAccountService extends SimpleAccountService
