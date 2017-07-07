@@ -1,5 +1,5 @@
 # Account experiments
-Modelling accounts using Functional and Reactive Domain Driven Design techniques.
+Modelling accounts (albeit naively) using Functional and Reactive Domain Driven Design techniques.
 
 The aim of this approach is two-fold:
 
