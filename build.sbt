@@ -16,23 +16,24 @@ libraryDependencies ++= {
 
   Seq(
     // Messaging layer
-    akka        %% "akka-actor"       % akkaV,
-    akka        %% "akka-persistence" % akkaV,
-    akka        %% "akka-slf4j"       % akkaV,
-    akka        %% "akka-testkit"     % akkaV % Test,
-
+    akka %% "akka-actor"       % akkaV,
+    akka %% "akka-persistence" % akkaV,
+    akka %% "akka-slf4j"       % akkaV,
+    akka %% "akka-testkit"     % akkaV % Test,
     // Monads for algebra
-    typeLevel   %% "cats"             % catsV,
-
+    typeLevel %% "cats-core" % catsV,
     // Property based testing
-    scalaCheck  %% "scalacheck"       % scalaCheckV % Test,
-
+    scalaCheck %% "scalacheck" % scalaCheckV % Test,
     // Logging
-    "org.codehaus.groovy"             % "groovy"           % "2.4.12",
-    "ch.qos.logback"                  % "logback-classic"  % "1.2.3",
-
+    "org.codehaus.groovy" % "groovy"          % "2.4.12",
+    "ch.qos.logback"      % "logback-classic" % "1.2.3",
     // LevelDB journal
-    "org.iq80.leveldb"                % "leveldb"          % "0.7",
-    "org.fusesource.leveldbjni"       % "leveldbjni-all"   % "1.8"
+    "org.iq80.leveldb"          % "leveldb"        % "0.7",
+    "org.fusesource.leveldbjni" % "leveldbjni-all" % "1.8"
   )
 }
+
+// Scalafmt - Code Formatter
+scalafmtOnCompile in ThisBuild := true // all projects
+scalafmtOnCompile := true // current project
+scalafmtOnCompile in Compile := true // current project, specific configuration

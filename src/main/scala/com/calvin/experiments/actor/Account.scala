@@ -1,6 +1,6 @@
 package com.calvin.experiments.actor
 
-import akka.actor.{ActorLogging, Props}
+import akka.actor.{ ActorLogging, Props }
 import akka.persistence.PersistentActor
 import com.calvin.experiments.actor.Account._
 import com.calvin.experiments.domain.interpreters.simple._
@@ -60,7 +60,7 @@ class Account extends PersistentActor with ActorLogging {
         updatedAccount =>
           persist(AccountPreAuthorized(amount)) { event =>
             currentAcctState = updatedAccount
-          }
+        }
       )
 
     case Capture(amount) =>
@@ -69,7 +69,7 @@ class Account extends PersistentActor with ActorLogging {
         updatedAccount =>
           persist(BalanceCaptured(amount)) { event =>
             currentAcctState = updatedAccount
-          }
+        }
       )
 
     // Void and Cancel have the same underlying logic
@@ -80,7 +80,7 @@ class Account extends PersistentActor with ActorLogging {
         updatedAccount =>
           persist(AccountPreAuthCancelled(amount)) { event =>
             currentAcctState = updatedAccount
-          }
+        }
       )
 
     // Cancel is used to cancel a pre-authorization whilst the order is in the process of shipping
@@ -90,7 +90,7 @@ class Account extends PersistentActor with ActorLogging {
         updatedAccount =>
           persist(AccountPreAuthCancelled(amount)) { event =>
             currentAcctState = updatedAccount
-          }
+        }
       )
 
     case Credit(amount) =>
@@ -104,7 +104,7 @@ class Account extends PersistentActor with ActorLogging {
         updatedAccount =>
           persist(AccountDebited(amount)) { event =>
             currentAcctState = updatedAccount
-          }
+        }
       )
 
     case Purchase(amount) =>
@@ -113,7 +113,7 @@ class Account extends PersistentActor with ActorLogging {
         updatedAccount =>
           persist(AccountDebited(amount)) { event =>
             currentAcctState = updatedAccount
-          }
+        }
       )
 
     case BalancesQuery =>

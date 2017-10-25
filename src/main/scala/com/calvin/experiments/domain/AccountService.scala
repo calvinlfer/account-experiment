@@ -28,15 +28,17 @@ trait AccountService[Money, Account, Effect[_]] {
 
   def purchase(amount: Money): Account => Effect[Account] = debit(amount)
 
-  def capture(amount: Money): Account => Effect[Account] = account =>
-    for {
-      accWithMoney <- cancel(amount)(account)       // remove the hold
-      accResult    <- debit(amount)(accWithMoney)   // debit the account
-    } yield accResult
+  def capture(amount: Money): Account => Effect[Account] =
+    account =>
+      for {
+        accWithMoney <- cancel(amount)(account) // remove the hold
+        accResult <- debit(amount)(accWithMoney) // debit the account
+      } yield accResult
 
-  def void(amount: Money): Account => Effect[Account] = account =>
-    for {
-      accWithMoney <- cancel(amount)(account)       // remove the hold
-      accResult = credit(amount)(accWithMoney)      // credit the account
-    } yield accResult
+  def void(amount: Money): Account => Effect[Account] =
+    account =>
+      for {
+        accWithMoney <- cancel(amount)(account) // remove the hold
+        accResult = credit(amount)(accWithMoney) // credit the account
+      } yield accResult
 }
