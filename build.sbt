@@ -2,15 +2,17 @@ name := "account-experiment"
 
 version := "1.0"
 
-scalaVersion := "2.12.2"
+scalaVersion := "2.12.4"
+
+scalacOptions += "-Ypartial-unification"
 
 libraryDependencies ++= {
   val akka = "com.typesafe.akka"
   val typeLevel = "org.typelevel"
   val scalaCheck = "org.scalacheck"
   val scalaCheckV = "1.13.4"
-  val akkaV = "2.5.3"
-  val catsV = "0.9.0"
+  val akkaV = "2.5.6"
+  val catsV = "1.0.0-MF"
 
   Seq(
     // Messaging layer
